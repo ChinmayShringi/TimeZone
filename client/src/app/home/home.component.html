@@ -1,0 +1,57 @@
+<ng-template [ngIf]="show">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-5 mx-auto">
+        <form>
+          <h1 class="h3 mb-3 font-weight-normal">Search</h1>
+          <div class="form-group">
+            <label>Search with ..</label>
+            <input type="text" class="form-control" placeholder="Enter Search " [(ngModel)]="cred.name" name="cred.name"
+              autocomplete="off" />
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" (click)="srch()">
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template [ngIf]="!show">
+  <div class="container result">
+    <div class="row">
+      <div class="col-md-6 mt-5 mx-auto">
+        <form>
+          <div class="col-sm-8 mx-auto">
+            <h1 class="text-center">Result</h1>
+          </div>
+          <table class="table col-md-6 mx-auto">
+            <tr>
+              <td>Name</td>
+              <td>{{ details?.name }}</td>
+            </tr>
+            <tr>
+              <td>TimeZone</td>
+              <td>{{ details?.timezone }}</td>
+            </tr>
+            <tr>
+              <td>Latitide</td>
+              <td>{{ details?.latitude }}</td>
+            </tr>
+            <tr>
+              <td>Longitude</td>
+              <td>{{ details?.longitude }}</td>
+            </tr>
+            <tr>
+              <td>Date&Time</td>
+              <td>{{ details?.time }}</td>
+            </tr>
+            <button class="btn btn-lg btn-primary btn-block">
+              <a href="">Go Home</a>
+            </button>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
