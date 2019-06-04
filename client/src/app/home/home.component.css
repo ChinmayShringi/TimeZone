@@ -6,3 +6,17 @@ td {
   color: #fff;
   font-size: 20px;
 }
+
+li:hover {
+  background-color: rgb(95, 90, 163);
+  color: black;
+}
+
+li {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+option {
+  backface-visibility: visible;
+}

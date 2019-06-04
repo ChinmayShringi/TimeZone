@@ -17,7 +17,7 @@ export class FetchService {
   public searchFilter(user: searchFilter): Observable<any> {
     return this.http.post("http://localhost:3000/filter", user);
   }
-  public search(user: snm): Observable<any> {
+  public search(user: any): Observable<any> {
     return this.http.post("http://localhost:3000/search", user);
   }
 }

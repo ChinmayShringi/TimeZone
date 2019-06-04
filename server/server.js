@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const fs = require("fs");
 const app = express();
-const geonamesSearch = require('search-geonames');
+const geonamesSearch = require("search-geonames");
 
 const port = 3000;
 
@@ -25,7 +25,6 @@ function strcmp(str1, str2) {
   return 0;
 }
 
-
 app.post("/filter", (req, res) => {
   // request parameters
   const sname = req.body.sname;
@@ -44,57 +43,97 @@ app.post("/filter", (req, res) => {
       console.log(result); // on success
       const payload = {
         final: result
-      }
+      };
       res.send(payload);
     }
   }
   // address geocoding
   geonamesSearch.searchByQuery(sname, callback, options);
 });
-var path = __dirname + '/project/'
+var path = __dirname + "/project/";
 // or like this for a non index.js name
-var path = __dirname + '/project/server.js'
+var path = __dirname + "/project/server.js";
 
-let i = true;
+// app.post("/search", (req, res) => {
+//   const name = req.body.city;
+//   const codeiso = req.body.countryIso + ".zip";
+
+//   let res_obj = null;
+
+//   console.log("\nrequet received");
+
+//   fs.createReadStream("./allcs/" + codeiso)
+//     .pipe(geonames.pipeline)
+//     .pipe(
+//       through.obj((data, enc, next) => {
+//         if (strcmp(data.name, name) === 1) {
+//           var aestTime = new Date().toLocaleString("en-US", {
+//             timeZone: data.timezone
+//           });
+//           aestTime = new Date(aestTime);
+//           console.log("sending response");
+//           res_obj = {
+//             name: data.name,
+//             timezone: data.timezone,
+//             latitude: data.latitude,
+//             longitude: data.longitude,
+//             time: aestTime.toLocaleString()
+//           };
+//         } else {
+//           next();
+//         }
+//       })
+//     );
+
+//   let int = setInterval(() => {
+//     if (res_obj) {
+//       clearInterval(int);
+//       res.json(res_obj);
+//     }
+//   }, 50);
+// });
+
 app.post("/search", (req, res) => {
-  const name = req.body.name;
-  console.log(name);
-  const codeiso = req.body.codeIso + ".zip";
-  console.log(codeiso);
+  const name = req.body.city;
+  const codeiso = req.body.countryIso + ".zip";
+
+  let res_obj = null;
   fs.createReadStream("./allcs/" + codeiso)
     .pipe(geonames.pipeline)
     .pipe(
-      through.obj(function (data, enc, next) {
-
-        // console.log(
-        //   data.name,
-        //   " ",
-        //   data.timezone,
-        //   " ",
-        //   data.latitude,
-        //   " ",
-        //   data.longitude
-        // );
-        if (strcmp(data.name, name) == 1) {
-          var aestTime = new Date().toLocaleString("en-US", {
-            timeZone: data.timezone
-          });
-          aestTime = new Date(aestTime);
-          const payload = {
-            name: data.name,
-            timezone: data.timezone,
-            latitude: data.latitude,
-            longitude: data.longitude,
-            time: aestTime.toLocaleString()
-          }
-          res.json(payload);
-          i = false;
-        }
-        if (i) {
-          next();
-        }
+      through.obj((data, enc, next) => {
+        console.log(data.name + data.timezone + data.latitude + data.longitude);
       })
     );
+  //     through.obj((data, enc, next) => {
+  //       if (strcmp(data.name, name) === 1) {
+  //         var aestTime = new Date().toLocaleString("en-US", {
+  //           timeZone: data.timezone
+  //         });
+  //         aestTime = new Date(aestTime);
+  //         console.log("sending response");
+  //         res_obj = {
+  //           name: data.name,
+  //           timezone: data.timezone,
+  //           latitude: data.latitude,
+  //           longitude: data.longitude,
+  //           time: aestTime.toLocaleString()
+  //         };
+  //         this.emit("end");
+  //       }
+  //       next();
+  //     })
+  //   )
+  //   .on("end", () => {
+  //     doSomethingSpecial();
+  //   });
+
+  // // let int = setInterval(() => {
+  // //   if (res_obj) {
+  // //     clearInterval(int);
+  // res.json(res_obj);
+  // // }
+  // // }, 50);
 });
 
 app.listen(port, () => {

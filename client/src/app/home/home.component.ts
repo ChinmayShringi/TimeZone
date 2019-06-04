@@ -11,26 +11,17 @@ import { HttpClient } from "@angular/common/http";
 export class HomeComponent {
   show: boolean = true;
   cred: {
-    name: string;
-    codeIso: string;
-    latitude: number;
-    logitude: number;
+    city: string;
+    countryIso: string;
   } = {
-    name: "",
-    codeIso: "",
-    latitude: null,
-    logitude: null
+    city: "",
+    countryIso: ""
   };
   details: srh;
   constructor(private fetch: FetchService, private http: HttpClient) {}
-
-  //call this function if filter selected
-  srch(value1, value2, value3, value4) {
-    this.cred.name = value1;
-    this.cred.codeIso = value2;
-    this.cred.latitude = value3;
-    this.cred.logitude = value4;
-    this.fetch.search({ name: "hazira", codeIso: "IN" }).subscribe(
+  //call if button clicked
+  srchBtn() {
+    this.fetch.search(this.cred).subscribe(
       arg => {
         this.show = false;
         this.details = arg;
@@ -39,5 +30,45 @@ export class HomeComponent {
         console.error(err);
       }
     );
+  }
+
+  //call this function if filter selected
+  srch(arg) {
+    this.fetch.search(arg).subscribe(
+      arg => {
+        this.show = false;
+        this.details = arg;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
+  //Filter Function
+
+  credable: {
+    sname: string;
+  } = { sname: "" };
+  arrayResult: {
+    final: [];
+  } = { final: [] };
+  updateSearch(value: any) {
+    this.credable = { sname: value };
+    this.fetch.searchFilter(this.credable).subscribe(
+      arg => {
+        this.arrayResult = arg;
+        console.log(this.arrayResult.final);
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+  goHome() {
+    this.show = true;
+    this.details = null;
+    this.cred = null;
+    this.arrayResult = null;
   }
 }

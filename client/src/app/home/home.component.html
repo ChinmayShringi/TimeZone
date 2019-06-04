@@ -7,9 +7,19 @@
           <div class="form-group">
             <label>Search with ..</label>
             <input type="text" class="form-control" placeholder="Enter Search " [(ngModel)]="cred.name" name="cred.name"
-              autocomplete="off" />
+              (ngModelChange)="updateSearch($event)" autocomplete="off" />
           </div>
-          <button class="btn btn-lg btn-primary btn-block" (click)="srch()">
+          <option>
+            <ul class="list-group list-group-flush">
+              <span *ngFor="let result of arrayResult.final">
+                <li style="color: black" class="list-group-item" role="tabpanel" (click)="srch(result)"
+                  *ngIf="result.city">
+                  <a>{{ result?.city }}{{ result?.place }}
+                    <br>{{ result?.country }}</a></li>
+              </span>
+            </ul>
+          </option>
+          <button class="btn btn-lg btn-primary btn-block" (click)="srchBtn($event)">
             Search
           </button>
         </form>
@@ -27,7 +37,7 @@
           </div>
           <table class="table col-md-6 mx-auto">
             <tr>
-              <td>Name</td>
+              <td>City</td>
               <td>{{ details?.name }}</td>
             </tr>
             <tr>
@@ -46,8 +56,8 @@
               <td>Date&Time</td>
               <td>{{ details?.time }}</td>
             </tr>
-            <button class="btn btn-lg btn-primary btn-block">
-              <a href="">Go Home</a>
+            <button (click)="goHome()" class="btn btn-lg btn-primary btn-block">
+              Go Home
             </button>
           </table>
         </form>

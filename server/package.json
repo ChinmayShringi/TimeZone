@@ -15,6 +15,7 @@
     "fs": "0.0.1-security",
     "geonames-stream": "^2.2.0",
     "search-geonames": "0.0.10",
-    "through2": "^3.0.1"
+    "through2": "^3.0.1",
+    "unzip": "^0.1.11"
   }
 }
