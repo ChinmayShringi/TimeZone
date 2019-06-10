@@ -1,67 +1,69 @@
-<ng-template [ngIf]="show">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 mt-5 mx-auto">
-        <form>
-          <h1 class="h3 mb-3 font-weight-normal">Search</h1>
-          <div class="form-group">
-            <label>Search with ..</label>
-            <input type="text" class="form-control" placeholder="Enter Search " [(ngModel)]="cred.name" name="cred.name"
-              (ngModelChange)="updateSearch($event)" autocomplete="off" />
-          </div>
-          <option>
-            <ul class="list-group list-group-flush">
-              <span *ngFor="let result of arrayResult.final">
-                <li style="color: black" class="list-group-item" role="tabpanel" (click)="srch(result)"
-                  *ngIf="result.city">
-                  <a>{{ result?.city }}{{ result?.place }}
-                    <br>{{ result?.country }}</a></li>
-              </span>
-            </ul>
-          </option>
-          <button class="btn btn-lg btn-primary btn-block" (click)="srchBtn($event)">
-            Search
-          </button>
-        </form>
+<div class="container">
+  <div class="row ">
+    <div class="col-6">
+      <div class="container contanm">
+        <div class="row">
+          <form>
+            <h1 class="h3 mb-3 ">TimeZone</h1>
+            <div class="search-box">
+              <input type="text" class="form-control" placeholder="Enter Search " [(ngModel)]="cred.city"
+                name="cred.city" (ngModelChange)="updateSearch($event)" autocomplete="off" />
+            </div>
+            <option>
+              <ul class="list-group list-group-flush">
+                <span *ngFor="let result of arrayResult.final">
+                  <li style="color: black" class="list-group-item" role="tabpanel" (click)="srch(result)"
+                    *ngIf="result.city">
+                    <a>{{ result?.city }}{{ result?.place }} <br />{{
+                      result?.country
+                    }}</a>
+                  </li>
+                </span>
+              </ul>
+            </option>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</ng-template>
-<ng-template [ngIf]="!show">
-  <div class="container result">
-    <div class="row">
-      <div class="col-md-6 mt-5 mx-auto">
-        <form>
-          <div class="col-sm-8 mx-auto">
+    <div class="col">
+      <ng-template [ngIf]="loader">
+        <div class="spinner-border text-light" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-4">
+      <div class="container fresult">
+        <div class="row">
+          <form>
             <h1 class="text-center">Result</h1>
-          </div>
-          <table class="table col-md-6 mx-auto">
-            <tr>
-              <td>City</td>
-              <td>{{ details?.name }}</td>
-            </tr>
-            <tr>
-              <td>TimeZone</td>
-              <td>{{ details?.timezone }}</td>
-            </tr>
-            <tr>
-              <td>Latitide</td>
-              <td>{{ details?.latitude }}</td>
-            </tr>
-            <tr>
-              <td>Longitude</td>
-              <td>{{ details?.longitude }}</td>
-            </tr>
-            <tr>
-              <td>Date&Time</td>
-              <td>{{ details?.time }}</td>
-            </tr>
-            <button (click)="goHome()" class="btn btn-lg btn-primary btn-block">
-              Go Home
-            </button>
-          </table>
-        </form>
+            <ng-template [ngIf]="!show">
+              <table class="table col-md-6 mx-auto">
+                <tr>
+                  <td>City</td>
+                  <td>{{ details?.name }}</td>
+                </tr>
+                <tr>
+                  <td>TimeZone</td>
+                  <td>{{ details?.timezone }}</td>
+                </tr>
+                <tr>
+                  <td>Latitide</td>
+                  <td>{{ details?.latitude }}</td>
+                </tr>
+                <tr>
+                  <td>Longitude</td>
+                  <td>{{ details?.longitude }}</td>
+                </tr>
+                <tr>
+                  <td>Date&Time</td>
+                  <td>{{ details?.time }}</td>
+                </tr>
+              </table>
+            </ng-template>
+          </form>
+
+        </div>
       </div>
     </div>
   </div>
-</ng-template>

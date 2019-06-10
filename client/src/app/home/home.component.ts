@@ -10,6 +10,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class HomeComponent {
   show: boolean = true;
+  loader: boolean = false;
   cred: {
     city: string;
     countryIso: string;
@@ -19,25 +20,15 @@ export class HomeComponent {
   };
   details: srh;
   constructor(private fetch: FetchService, private http: HttpClient) {}
-  //call if button clicked
-  srchBtn() {
-    this.fetch.search(this.cred).subscribe(
-      arg => {
-        this.show = false;
-        this.details = arg;
-      },
-      err => {
-        console.error(err);
-      }
-    );
-  }
 
   //call this function if filter selected
   srch(arg) {
+    this.loader = true;
     this.fetch.search(arg).subscribe(
       arg => {
         this.show = false;
         this.details = arg;
+        this.loader = false;
       },
       err => {
         console.error(err);
@@ -46,17 +37,14 @@ export class HomeComponent {
   }
 
   //Filter Function
-
-  credable: {
-    sname: string;
-  } = { sname: "" };
   arrayResult: {
     final: [];
   } = { final: [] };
   updateSearch(value: any) {
-    this.credable = { sname: value };
-    this.fetch.searchFilter(this.credable).subscribe(
+    this.loader = true;
+    this.fetch.searchFilter({ sname: value }).subscribe(
       arg => {
+        this.loader = false;
         this.arrayResult = arg;
         console.log(this.arrayResult.final);
       },
@@ -64,11 +52,5 @@ export class HomeComponent {
         console.error(err);
       }
     );
-  }
-  goHome() {
-    this.show = true;
-    this.details = null;
-    this.cred = null;
-    this.arrayResult = null;
   }
 }
