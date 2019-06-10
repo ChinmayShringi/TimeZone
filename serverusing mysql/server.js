@@ -24,12 +24,10 @@ app.post("/search", (req, res) => {
   const id = req.body.geonameId;
   const iso = req.body.countryIso;
   let res_obj = null;
-  if (name === null && iso === null) {
-    console.log("Error" + err);
-  } else {
-    let sql = `SELECT name,timezone,latitude,longitude FROM ${iso}1 where name="${name}" and geonameid=${id}`;
-    connection.query(sql, (err, results, fields) => {
-      if (err) throw err;
+  let sql = `SELECT name,timezone,latitude,longitude FROM ${iso}1 where name="${name}" and geonameid=${id}`;
+  connection.query(sql, (err, results, fields) => {
+    if (err) throw err;
+    if (results.length > 0) {
       var aestTime = new Date().toLocaleString("en-US", {
         timeZone: results[0].timezone
       });
@@ -42,8 +40,25 @@ app.post("/search", (req, res) => {
         time: aestTime.toLocaleString()
       };
       res.json(res_obj);
-    });
-  }
+    } else {
+      sql = `SELECT name,timezone,latitude,longitude FROM ${iso}1 where name="${name}"`;
+      connection.query(sql, (err, results, fields) => {
+        if (err) throw err;
+        var aestTime = new Date().toLocaleString("en-US", {
+          timeZone: results[0].timezone
+        });
+        aestTime = new Date(aestTime);
+        res_obj = {
+          name: results[0].name,
+          timezone: results[0].timezone,
+          latitude: results[0].latitude,
+          longitude: results[0].longitude,
+          time: aestTime.toLocaleString()
+        };
+        res.json(res_obj);
+      });
+    }
+  });
 });
 
 app.post("/filter", (req, res) => {
