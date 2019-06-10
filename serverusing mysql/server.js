@@ -9,15 +9,14 @@ const port = 5002;
 app.use(bodyParser.json());
 app.use(cors());
 
-var connection = mysql.createConnection({
+var connection = mysql.createPool({
+  connectionLimit: 5,
   host: "127.0.0.1",
-  port: 3306,
   user: "root",
   password: "mysqlroot",
-  database: "timezonecities"
+  database: "timezonecities",
+  debug: false
 });
-
-// connection.connect();
 
 app.post("/search", (req, res) => {
   const name = req.body.city;

@@ -12,8 +12,13 @@ li:hover {
   color: black;
 }
 
+table {
+  opacity: 100;
+  animation-name: tablecont;
+  animation-duration: 4s;
+}
+
 h1 {
-  text-align: center;
   font-weight: 800;
   font-size: 50px;
 }
@@ -22,4 +27,14 @@ input,
 option {
   border-radius: 30px;
   padding: 10px;
+}
+
+@keyframes tablecont {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100;
+  }
 }
