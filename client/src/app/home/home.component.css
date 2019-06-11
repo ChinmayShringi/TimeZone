@@ -1,5 +1,11 @@
 div {
   color: #fff;
+  font-family: cursive;
+}
+
+#material-icon {
+  display: flex;
+  border-radius: 50%;
 }
 
 td {
@@ -19,7 +25,7 @@ table {
 }
 
 h1 {
-  font-weight: 800;
+  font-weight: 500;
   font-size: 50px;
 }
 
@@ -37,4 +43,16 @@ option {
   to {
     opacity: 100;
   }
+}
+
+.search_icon {
+  margin-top: -15%;
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: rgba(128, 125, 125, 0.5);
 }

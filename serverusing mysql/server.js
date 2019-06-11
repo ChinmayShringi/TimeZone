@@ -11,10 +11,10 @@ app.use(cors());
 
 var connection = mysql.createPool({
   connectionLimit: 5,
-  host: "127.0.0.1",
+  host: "139.59.2.78",
   user: "root",
   password: "mysqlroot",
-  database: "timezonecities",
+  database: "timezone_webapp",
   debug: false
 });
 

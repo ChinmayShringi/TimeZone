@@ -46,7 +46,6 @@ export class HomeComponent {
       arg => {
         this.loader = false;
         this.arrayResult = arg;
-        console.log(this.arrayResult.final);
       },
       err => {
         console.error(err);

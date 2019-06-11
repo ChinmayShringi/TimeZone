@@ -1,22 +1,29 @@
 <div class="container">
-  <div class="row ">
-    <div class="col-md-4">
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
       <div class="container contanm">
         <div class="row">
           <form>
             <h1 class="h3 mb-3 ">TimeZone</h1>
             <div class="search-box">
-              <input type="text" class="form-control" placeholder="Enter Search " [(ngModel)]="cred.city"
+              <input autofocus type="text" class="form-control" placeholder="Enter Search....." [(ngModel)]="cred.city"
                 name="cred.city" (ngModelChange)="updateSearch($event)" autocomplete="off" />
+              <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
             </div>
             <option>
               <ul class="list-group list-group-flush">
                 <span *ngFor="let result of arrayResult.final">
                   <li style="color: black" class="list-group-item" role="tabpanel" (click)="srch(result)"
                     *ngIf="result.city">
-                    <a>{{ result?.city }}{{ result?.place }} <br />{{
-                      result?.country
-                    }}</a>
+                    <a>
+                      <img src="../../assets/Flags/{{
+                                result.countryIso | lowercase
+                              }}.png" width="20" height="15" class="d-inline-block"
+                        onerror="this.src='../../favicon.ico'" />
+                      {{ result?.city }}
+                      {{ result?.place }}
+                      <br />{{ result?.country }}
+                    </a>
                   </li>
                 </span>
               </ul>
@@ -25,14 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <ng-template [ngIf]="loader">
-        <div class="spinner-border text-light" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </ng-template>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-4" *ngIf="!loader">
       <div class="container fresult">
         <div class="row">
           <form>
@@ -62,8 +62,13 @@
               </table>
             </ng-template>
           </form>
-
         </div>
       </div>
     </div>
+    <div class="col-md-4 text-center" *ngIf="loader">
+      <div class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
   </div>
+</div>
