@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 offset-md-2">
+        <div class="container contanm">
+          <div class="row">
+            <form>
+              <h1 class="h3 mb-3 ">TimeZone</h1>
+              <div class="search-box">
+                <input autofocus type="text" class="form-control" placeholder="Enter Search....." [(ngModel)]="cred.city"
+                  name="cred.city" (ngModelChange)="updateSearch($event)" autocomplete="off" />
+                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+              </div>
+              <div class="card">
+                  <span class="container" *ngFor="let result of arrayResult.final">
+                    <span class="row" style="color: black" role="tabpanel" (click)="srch(result)"
+                      *ngIf="result.city">
+                      <a>
+                        <img src="../../assets/Flags/{{
+                                  result.countryIso | lowercase
+                                }}.png" width="20" height="15" class="d-inline-block"
+                         />
+                        {{ result?.city }}
+                        {{ result?.place }}
+                        <br />{{ result?.country }}
+                      </a>
+                    </span>
+                  </span>
+                </div>
+        </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" *ngIf="!loader">
+        <div class="container fresult">
+          <div class="row">
+            <form>
+              <h1 style="margin-left: 30px">Result</h1>
+              <ng-template [ngIf]="show">
+                <table class="table col-md-6 ">
+                  <tr>
+                    <td>City</td>
+                    <td>New York</td>
+                  </tr>
+                  <tr>
+                    <td>TimeZone</td>
+                    <td>Eastern Time</td>
+                  </tr>
+                  <tr>
+                    <td>Latitide</td>
+                    <td>74.0060° W</td>
+                  </tr>
+                  <tr>
+                    <td>Longitude</td>
+                    <td>40.7128° N</td>
+                  </tr>
+                  <tr>
+                    <td>Date&Time</td>
+                    <td>12:01 pm</td>
+                  </tr>
+                </table>
+              </ng-template>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center" *ngIf="loader">
+        <div class="spinner-border text-light" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
