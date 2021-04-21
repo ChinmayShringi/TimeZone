@@ -8,6 +8,6 @@ This is a Node.js express server API created using moment-timezone, geonames to 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## server
-`cd server` \n
-`npm i``
+`cd server` 
+`npm i`
 Run `node serve.js`` or `nodemon server.js``.
