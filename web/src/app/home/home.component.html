@@ -35,27 +35,27 @@
           <div class="row">
             <form>
               <h1 style="margin-left: 30px">Result</h1>
-              <ng-template [ngIf]="show">
+              <ng-template [ngIf]="!show">
                 <table class="table col-md-6 ">
                   <tr>
                     <td>City</td>
-                    <td>New York</td>
+                    <td>{{ details?.name }}</td>
                   </tr>
                   <tr>
                     <td>TimeZone</td>
-                    <td>Eastern Time</td>
+                    <td>{{ details?.timezone }}</td>
                   </tr>
                   <tr>
                     <td>Latitide</td>
-                    <td>74.0060° W</td>
+                    <td>{{ details?.latitude }}</td>
                   </tr>
                   <tr>
                     <td>Longitude</td>
-                    <td>40.7128° N</td>
+                    <td>{{ details?.longitude }}</td>
                   </tr>
                   <tr>
                     <td>Date&Time</td>
-                    <td>12:01 pm</td>
+                    <td>{{ details?.time }}</td>
                   </tr>
                 </table>
               </ng-template>
