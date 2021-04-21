@@ -10,4 +10,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## server
 `cd server` 
 `npm i`
-Run `node serve.js`` or `nodemon server.js``.
+Run `node serve.js` or `nodemon server.js``.
