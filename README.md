@@ -16,20 +16,16 @@ Run `node serve.js` or `nodemon server.js`.
 
 # License
 
-<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
-  <a rel="license"
-     href="http://creativecommons.org/publicdomain/zero/1.0/">
-    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
-  </a>
-  <br />
-  To the extent possible under law,
-  <a rel="dct:publisher"
-     href="https://github.com/ChinmayShringi/">
-    <span property="dct:title">Chinmay Shringi</span></a>
-  has waived all copyright and related or neighboring rights to
-  <span property="dct:title">Template</span>.
-This work is published from:
-<span property="vcard:Country" datatype="dct:ISO3166"
-      content="IN" about="https://github.com/ChinmayShringi/">
-  India</span>.
-</p>
+Copyright [2021] [Chinmay Shringi]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
